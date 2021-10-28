@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct book
+{
+	int book_id;
+	float book_cost;
+};
+typedef struct book* NODE;
+NODE getnode()
+{
+	NODE temp=(NODE)malloc(sizeof(struct book));
+	return temp;
+		
+}
+
+void push(NODE *stack,int *top)
+{
+	NODE item=getnode();
+	
+	printf("enter book details\n");
+	printf("book_id\n");
+	scanf("%d",&(item->book_id));
+	printf("book price\n");
+	scanf("%f",&(item->book_cost));
+	
+	if(*top>=5){
+		printf("books exist alredy\n");
+		return;
+	}
+	(*top)++;
+	stack[*top]=item;
+	printf("book added sucessfully \n");
+}
+
+void pop(NODE *stack,int *top)
+{
+	if(*top==-1){
+		printf("stack empty\n");
+		return;
+	}
+	free(stack[*top]);
+	(*top)--;
+	printf("book deleted from list\n");
+}
+
+int main()
+{
+	NODE stack[5];
+	int top=-1;
+	push(stack,&top);
+	pop(stack,&top);
+}
